@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Dashboard />
+    <Detran />
   </div>
 </template>
 
@@ -8,12 +8,13 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-import Dashboard from './components/Dashboard.vue'
+import Detran from './components/Detran.vue'
+
 
 export default {
   name: 'App',
   components: {
-    Dashboard
+    Detran
   }
 }
 </script>
