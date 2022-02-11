@@ -15,6 +15,8 @@ public class ReasonOption{
     public Date updatedAt;
     public int id;
     public ArrayList<Object> reasonOptions;
+    public ArrayList<Service> services;
+
 	public String getLabel() {
 		return label;
 	}
@@ -69,6 +71,14 @@ public class ReasonOption{
 	public void setReasonOptions(ArrayList<Object> reasonOptions) {
 		this.reasonOptions = reasonOptions;
 	}
+	public ArrayList<Service> getServices() {
+		return services;
+	}
+	public void setServices(ArrayList<Service> services) {
+		this.services = services;
+	}
+	
+	
     
     
 }

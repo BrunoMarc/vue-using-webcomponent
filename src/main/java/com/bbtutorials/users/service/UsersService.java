@@ -47,9 +47,9 @@ public class UsersService {
     	return establishmentInfo;
     }
     
-    public ScheduleData[] showSchedules(int establishmentId, int category, int payment) {
+    public ScheduleData[] showSchedules(int establishmentId, int category, int service, int payment) {
     	responseJsonSchedules = webClient.get()
-                .uri("/establishments/"+establishmentId+"/schedules?value="+payment+"&reason="+category)
+                .uri("/establishments/"+establishmentId+"/schedules?value="+payment+"&reason="+category+"&serviceId="+service)
 				/* .header("Authorization", authData.token) */
                 .exchange()
                 .block()

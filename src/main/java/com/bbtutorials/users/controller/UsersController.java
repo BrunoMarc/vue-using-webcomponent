@@ -38,9 +38,9 @@ public class UsersController {
 	
 	@GetMapping(path = UserLinks.GET_SCHEDULES)
     public ResponseEntity<?> showSchedules(@PathVariable int establishment,
-    		@RequestParam int category, @RequestParam int payment) {
+    		@RequestParam int category, @RequestParam int service, @RequestParam int payment) {
         
-		ScheduleData[] resource = usersService.showSchedules(establishment, category, payment);
+		ScheduleData[] resource = usersService.showSchedules(establishment, category, service, payment);
         return ResponseEntity.ok(resource);
     }
 	

@@ -29,11 +29,11 @@
                                 text-field="value.label"
                                 disabled-field="notEnabled"
                                 name="categoria"
-                                @change="getSchedules()"
+                                @change="setServices"
                                 ></b-form-select>
                     </div>
                 </div>
-                <!-- <div class="col-md-10">
+                <div class="col-md-10">
                     <div class="form-group">
                         <label htmlFor="servico">Serviço</label>
                             <b-form-select
@@ -41,12 +41,13 @@
                                 :options="optionsServico"
                                 class="mb-3"
                                 value-field="value"
-                                text-field="name"
+                                text-field="value.name"
                                 disabled-field="notEnabled"
                                 name="servico"
+                                @change="getSchedules()"
                                 ></b-form-select>
                     </div>
-                </div> -->
+                </div>
                 <div class="col-md-10">
                     <div class="form-group">
                         <label htmlFor="agenda">Agenda</label>
@@ -86,15 +87,7 @@ export default {
         servico: '', // Array reference
         agenda: '', // Array reference
         optionsCategoria: [],
-        optionsServico: [
-          { value: 'a', name: 'This is First option' },
-          { value: 'b', name: 'Default Selected Option' },
-          { value: 'c', name: 'This is another option' },
-          { value: 'd', name: 'This one is disabled' },
-          { value: 'e', name: 'This is option e' },
-          { value: 'f', name: 'This is option f' },
-          { value: 'g', name: 'This is option g' }
-        ],
+        optionsServico: [],
         optionsAgenda: [],
         componentFilterData: null,
         componentFilterSchedule: null
@@ -112,7 +105,7 @@ export default {
     },
     getSchedules() {
         const establishmentId = this.estabelecimento.establishment.id
-        getSchedules(establishmentId, this.categoria.id, this.categoria.value.id ).then(response => {
+        getSchedules(establishmentId, this.categoria.id, this.servico.id, this.categoria.value.id ).then(response => {
             console.log(response)
             this.optionsAgenda = response.map((schedule) => {
                 return { 
@@ -128,10 +121,18 @@ export default {
             }
         });
     },
+    setServices(data) {
+        this.optionsServico = data.services.map((service) => {
+            return { 
+                value: service
+            }
+        });
+    },
     generateEncaixeSchedule() {
         this.componentFilterData = `{
             "offers": {
-                "serviceId": ${this.agenda.service.id},
+                "categoryId": ${this.categoria.id},
+                "serviceId": ${this.servico.id},
                 "value": ${this.categoria.value.id}
             }
         }`
