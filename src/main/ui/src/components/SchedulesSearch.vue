@@ -75,7 +75,7 @@
 
 <script>
 import { BFormSelect } from 'bootstrap-vue'
-import { getEstablishment, createUser, getSchedules } from '../services/UserService'
+import { getEstablishment, getSchedules } from '../services/EncaixeService'
 
 export default {
   name: 'SchedulesSearch',
@@ -137,14 +137,6 @@ export default {
             }
         }`
         this.componentFilterSchedule = `{"id": ${this.agenda.schedule.id}}`
-    },
-    userCreate(data) {
-      console.log('data:::', data)
-      data.id = this.numberOfUsers + 1
-      createUser(data).then(response => {
-        console.log(response);
-        this.getEstablishment();
-      });
     }
   },
   mounted () {

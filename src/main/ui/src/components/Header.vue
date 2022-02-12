@@ -1,6 +1,6 @@
 <template>
     <div class="header">
-        Vue.js With Java
+        Vue.js com Java (Integração Encaixe)
     </div>
 </template>
 

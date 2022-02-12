@@ -4,7 +4,7 @@
     <div class="container mrgnbtm">
           <div class="row">
             <div class="col-md-12">
-                <SchedulesSearch @createUser="userCreate($event)" />
+                <SchedulesSearch />
             </div>
           </div>
     </div>
@@ -14,7 +14,7 @@
 <script>
 import Header from './Header.vue'
 import SchedulesSearch from './SchedulesSearch.vue'
-import { getEstablishment, createUser } from '../services/UserService'
+import { getEstablishment } from '../services/EncaixeService'
 
 export default {
   name: 'Detran',
@@ -24,8 +24,7 @@ export default {
   },
   data() {
       return {
-          establishment: [],
-          numberOfUsers: 0
+          establishment: []
       }
   },
   methods: {
@@ -35,14 +34,6 @@ export default {
         this.establishment = [response]
         this.numberOfUsers = this.users.length
       })
-    },
-    userCreate(data) {
-      console.log('data:::', data)
-      data.id = this.numberOfUsers + 1
-      createUser(data).then(response => {
-        console.log(response);
-        this.getEstablishment();
-      });
     }
   },
   mounted () {
