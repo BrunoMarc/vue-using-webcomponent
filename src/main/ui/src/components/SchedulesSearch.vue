@@ -105,7 +105,7 @@ export default {
     },
     getSchedules() {
         const establishmentId = this.estabelecimento.establishment.id
-        getSchedules(establishmentId, this.categoria.id, this.servico.id, this.categoria.value.id ).then(response => {
+        getSchedules(establishmentId, this.categoria.id, this.servico.id, 3).then(response => {
             console.log(response)
             this.optionsAgenda = response.map((schedule) => {
                 return { 
@@ -140,7 +140,7 @@ export default {
     }
   },
   mounted () {
-    this.getEstablishment('ciasc');
+    this.getEstablishment('ciretranaeroporto');
   }
 }
 </script>
