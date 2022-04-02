@@ -37,9 +37,9 @@ public class EncaixeController {
 	
 	@GetMapping(path = EncaixeLinks.GET_SCHEDULES)
     public ResponseEntity<?> showSchedules(@PathVariable int establishment,
-    		@RequestParam int category, @RequestParam int service, @RequestParam int payment) {
+    		@RequestParam int category, @RequestParam int service, @RequestParam int payment, @RequestParam int agreementId) {
         
-		ScheduleData[] resource = encaixeService.showSchedules(establishment, category, service, payment);
+		ScheduleData[] resource = encaixeService.showSchedules(establishment, category, service, payment, agreementId);
         return ResponseEntity.ok(resource);
     }
 

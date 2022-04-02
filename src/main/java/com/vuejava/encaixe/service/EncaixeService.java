@@ -32,9 +32,13 @@ public class EncaixeService {
     	return establishmentInfo;
     }
     
-    public ScheduleData[] showSchedules(int establishmentId, int category, int service, int payment) {
+    public ScheduleData[] showSchedules(int establishmentId, int category, int service, int payment, int agreement) {
+    	String url = "/establishments/"+establishmentId+"/schedules?value="+payment+"&reason="+category+"&serviceId="+service;
+    	if (agreement != 0) {
+    		url = url.concat("&agreementId="+agreement);
+    	}
     	responseJsonSchedules = webClient.get()
-                .uri("/establishments/"+establishmentId+"/schedules?value="+payment+"&reason="+category+"&serviceId="+service)
+                .uri(url)
 				/* .header("Authorization", authData.token) */
                 .exchange()
                 .block()

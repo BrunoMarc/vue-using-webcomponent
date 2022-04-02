@@ -4,8 +4,12 @@ export async function getEstablishment(name) {
     return await response.json();
 }
 
-export async function getSchedules(establishmentId, category, service, payment) {
+export async function getSchedules(establishmentId, category, service, payment, agreement) {
 
-    const response = await fetch(`/api/establishments/${establishmentId}/schedules?payment=${payment}&category=${category}&service=${service}`);
+    let url = `/api/establishments/${establishmentId}/schedules?payment=${payment}&category=${category}&service=${service}`;
+    if (agreement) {
+        url = `${url}&agreementId=${agreement}`
+    }
+    const response = await fetch(url);
     return await response.json();
 }

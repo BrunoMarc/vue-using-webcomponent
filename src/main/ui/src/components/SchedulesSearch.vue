@@ -77,6 +77,7 @@
 import { BFormSelect } from 'bootstrap-vue'
 import { getEstablishment, getSchedules } from '../services/EncaixeService'
 
+
 export default {
   name: 'SchedulesSearch',
   data() {
@@ -86,12 +87,17 @@ export default {
         categoria: '', // Array reference
         servico: '', // Array reference
         agenda: '', // Array reference
+        convenio: '',
         optionsCategoria: [],
         optionsServico: [],
         optionsAgenda: [],
         componentFilterData: null,
-        componentFilterSchedule: null
-      }
+        componentFilterSchedule: null,
+        paymentTypes: {
+            agreement: 3
+        },
+        payment: ''
+    }
   },
   components: {
         'b-form-select': BFormSelect
@@ -104,8 +110,10 @@ export default {
       })
     },
     getSchedules() {
-        const establishmentId = this.estabelecimento.establishment.id
-        getSchedules(establishmentId, this.categoria.id, this.servico.id, 3).then(response => {
+        const establishment = this.estabelecimento.establishment;
+        this.convenio = establishment.exclusiveAgreementId;
+        this.payment = this.categoria.value ? this.categoria.value.id : this.paymentTypes.agreement;
+        getSchedules(establishment.id, this.categoria.id, this.servico.id, this.payment, this.convenio).then(response => {
             console.log(response)
             this.optionsAgenda = response.map((schedule) => {
                 return { 
@@ -133,7 +141,8 @@ export default {
             "offers": {
                 "categoryId": ${this.categoria.id},
                 "serviceId": ${this.servico.id},
-                "value": ${this.categoria.value.id}
+                "value": ${this.payment},
+                "agreement": ${this.convenio}
             }
         }`
         this.componentFilterSchedule = `{"id": ${this.agenda.schedule.id}}`

@@ -30,6 +30,7 @@ public class Establishment{
     public Date createdAt;
     public Date updatedAt;
     public int id;
+    public int exclusiveAgreementId;
 	public String getName() {
 		return name;
 	}
@@ -174,6 +175,11 @@ public class Establishment{
 	public void setId(int id) {
 		this.id = id;
 	}
-    
+	public int getExclusiveAgreementId() {
+		return exclusiveAgreementId;
+	}
+	public void setExclusiveAgreementId(int exclusiveAgreementId) {
+		this.exclusiveAgreementId = exclusiveAgreementId;
+	}
     
 }
