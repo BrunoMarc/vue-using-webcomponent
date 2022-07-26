@@ -139,13 +139,23 @@ export default {
     generateEncaixeSchedule() {
         this.componentFilterData = `{
             "offers": {
-                "categoryId": ${this.categoria.id},
-                "serviceId": ${this.servico.id},
-                "value": ${this.payment},
-                "agreement": ${this.convenio}
+                "category": {
+                    "id": "${this.categoria.id}",
+                    "name": "${this.categoria.label}"
+                },
+                "service": {
+                    "id": "${this.servico.id}",
+                    "name": "${this.servico.name}"
+                },
+                "value": "${this.payment}",
+                "agreement": "${this.convenio}"
             }
         }`
-        this.componentFilterSchedule = `{"id": ${this.agenda.schedule.id}}`
+        this.componentFilterSchedule = `{
+            "id": "${this.agenda.schedule.id}",
+            "name": "${this.agenda.schedule.title}",
+            "imageUrl": "${this.agenda.schedule.imageUrl}"
+        }`
     }
   },
   mounted () {
