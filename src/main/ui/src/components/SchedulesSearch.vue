@@ -159,7 +159,7 @@ export default {
     }
   },
   mounted () {
-    this.getEstablishment('ciretranaeroporto');
+    this.getEstablishment('ciretranaero');
   }
 }
 </script>
